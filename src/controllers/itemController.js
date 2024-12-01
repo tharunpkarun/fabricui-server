@@ -16,11 +16,17 @@ module.exports = {
     const {
       name,
       email,
-      profile_image = "https://placehold.co/600x400/EEE/31343C",
-      resume = "https://placehold.co/600x400/EEE/31343C",
+      profile_image = false,
+      resume = false,
       status,
       card_id,
     } = req.body;
+    if(profile_image) {
+      profile_image = "https://placehold.co/600x400/EEE/31343C";
+    } else profile_image = null
+    if(resume) {
+      resume = "https://placehold.co/600x400/EEE/31343C";
+    } else profile_image = null
     Item.createItem({ name, email, profile_image, resume, status, card_id }, (err, data) => {
       if (err) return res.status(500).json({ error: err.message });
       res.status(201).json(data);
@@ -32,11 +38,17 @@ module.exports = {
     const {
       name,
       email,
-      profile_image = "https://placehold.co/600x400/EEE/31343C",
-      resume = "https://placehold.co/600x400/EEE/31343C",
+      profile_image = false,
+      resume = false,
       status,
       card_id,
     } = req.body;
+    if (profile_image) {
+      profile_image = "https://placehold.co/600x400/EEE/31343C";
+    } else profile_image = null;
+    if (resume) {
+      resume = "https://placehold.co/600x400/EEE/31343C";
+    } else profile_image = null;
 
     // Retrieve the current item data first
     Item.getItemById(id, (err, currentItem) => {
