@@ -2,9 +2,12 @@ const db = require('../db');
 
 module.exports = {
   getItems: (limit, offset, callback) => {
-    db.all(`SELECT * FROM items LIMIT ? OFFSET ?`, [limit, offset], (err, rows) =>
-      callback(err, rows)
-    );
+    db.get(`SELECT COUNT(*) as count FROM items`, (err, row) => {
+      const count = row.count;
+      db.all(`SELECT * FROM items LIMIT ? OFFSET ?`, [limit, offset], (err, rows) =>
+        callback(err, { count, data: rows })
+      );
+    });
   },
 
   getCards: () => {

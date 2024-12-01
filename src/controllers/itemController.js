@@ -12,21 +12,23 @@ module.exports = {
     });
   },
 
+  getItem: (req, res) => {
+    const id = req.params.id;
+    Item.getItemById(id, (err, row) => {
+      if (err) return res.status(500).json({ error: err.message });
+      if (!row) return res.status(404).json({ error: "Item not found" });
+      res.json({ data: row });
+    });
+  },
+
   createItem: (req, res) => {
-    let {
-      name,
-      email,
-      profile_image = false,
-      resume = false,
-      status,
-      card_id,
-    } = req.body;
-    if(profile_image) {
+    let { name, email, profile_image = false, resume = false, status, card_id } = req.body;
+    if (profile_image) {
       profile_image = "https://placehold.co/600x400/EEE/31343C";
-    } else profile_image = null
-    if(resume) {
+    } else profile_image = null;
+    if (resume) {
       resume = "https://placehold.co/600x400/EEE/31343C";
-    } else profile_image = null
+    } else profile_image = null;
     Item.createItem({ name, email, profile_image, resume, status, card_id }, (err, data) => {
       if (err) return res.status(500).json({ error: err.message });
       res.status(201).json(data);
@@ -35,14 +37,7 @@ module.exports = {
 
   updateItem: (req, res) => {
     const id = req.params.id;
-    let {
-      name,
-      email,
-      profile_image = false,
-      resume = false,
-      status,
-      card_id,
-    } = req.body;
+    let { name, email, profile_image = false, resume = false, status, card_id } = req.body;
     if (profile_image) {
       profile_image = "https://placehold.co/600x400/EEE/31343C";
     } else profile_image = null;
