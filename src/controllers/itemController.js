@@ -13,7 +13,14 @@ module.exports = {
   },
 
   createItem: (req, res) => {
-    const { name, email, profile_image, resume, status, card_id } = req.body;
+    const {
+      name,
+      email,
+      profile_image = "https://placehold.co/600x400/EEE/31343C",
+      resume = "https://placehold.co/600x400/EEE/31343C",
+      status,
+      card_id,
+    } = req.body;
     Item.createItem({ name, email, profile_image, resume, status, card_id }, (err, data) => {
       if (err) return res.status(500).json({ error: err.message });
       res.status(201).json(data);
@@ -22,7 +29,14 @@ module.exports = {
 
   updateItem: (req, res) => {
     const id = req.params.id;
-    const { name, email, profile_image, resume, status, card_id } = req.body;
+    const {
+      name,
+      email,
+      profile_image = "https://placehold.co/600x400/EEE/31343C",
+      resume = "https://placehold.co/600x400/EEE/31343C",
+      status,
+      card_id,
+    } = req.body;
 
     // Retrieve the current item data first
     Item.getItemById(id, (err, currentItem) => {

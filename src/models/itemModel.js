@@ -64,7 +64,14 @@ module.exports = {
     db.run(`DELETE FROM items`, callback);
     db.run(
       `INSERT INTO items (name, email, profile_image, resume, status, card_id) VALUES (?, ?, ?, ?, ?, ?)`,
-      ["John Doe", "john@example.com", null, null, true, 0]
+      [
+        "John Doe",
+        "john@example.com",
+        "https://placehold.co/600x400/EEE/31343C",
+        "https://placehold.co/600x400/EEE/31343C",
+        true,
+        0,
+      ]
     );
   },
 };
