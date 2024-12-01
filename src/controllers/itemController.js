@@ -13,7 +13,7 @@ module.exports = {
   },
 
   createItem: (req, res) => {
-    const {
+    let {
       name,
       email,
       profile_image = false,
@@ -35,7 +35,7 @@ module.exports = {
 
   updateItem: (req, res) => {
     const id = req.params.id;
-    const {
+    let {
       name,
       email,
       profile_image = false,
