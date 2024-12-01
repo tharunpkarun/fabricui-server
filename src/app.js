@@ -9,13 +9,10 @@ resetData((err) => {
 });
 
 const app = express();
-
-// Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 
-// Middleware to parse JSON and URL-encoded data
-app.use(bodyParser.json()); // Parse JSON bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Vercel SQLite App!");
